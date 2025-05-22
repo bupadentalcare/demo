@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Amazon UK Product Search";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Amazon UK Product Search</h1>
+    <form method="post">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search for products..." name="SearchTerm" value="@Model.SearchTerm" required />
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+    @if (Model.Results != null)
+    {
+        <h2>Results</h2>
+        <ul class="list-group">
+            @foreach (var product in Model.Results)
+            {
+                <li class="list-group-item">
+                    <strong>@product.Title</strong><br />
+                    <span>@product.Price</span><br />
+                    <a href="@product.Url" target="_blank">View on Amazon UK</a>
+                </li>
+            }
+        </ul>
+    }
+</div>
